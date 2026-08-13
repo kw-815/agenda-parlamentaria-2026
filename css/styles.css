@@ -185,24 +185,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* ============================================================
-   Banner de trabajo (quitar cuando el contenido sea el definitivo)
-   ============================================================ */
-.wip-banner {
-  /* Simple a propósito: es contenido temporal (se retira con el
-     borrador), no el lugar para gastar creatividad — la franja
-     diagonal que probé aquí es justo el tipo de patrón que un
-     detector de "AI slop" reconoce como genérico, además de fallar
-     contraste en la franja oscura. Un color plano no tiene ese problema. */
-  background: var(--orange);
-  color: var(--ink);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-align: center;
-  padding: 0.5rem 1rem;
-}
-
-/* ============================================================
    Header / Footer
    ============================================================ */
 .site-header {
@@ -347,6 +329,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   scroll-margin-top: calc(var(--header-h) + 24px);
   transition: opacity 200ms var(--ease);
 }
+/* Las secciones de eje arrancan ocultas y solo se muestran al activar
+   su tarjeta de filtro (main.js). Solo dentro de .js: sin JS, los chips
+   no hacen nada, así que el contenido debe verse completo por defecto
+   — mismo principio que ya rige la animación de entrada del hero. */
+.js .section[id^="eje-"] { display: none; }
 /* Mismo bug que .intro/.eje__objetivo: max-width sin marco dejaba un
    vacío sin explicar a la derecha en "Fortalecimiento institucional" y
    "Participación ciudadana". Se quita — el título ya es corto/grande
@@ -380,10 +367,13 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease),
     box-shadow 220ms var(--ease), border-top-color 220ms var(--ease-hover);
 }
-.js .eje { opacity: 0; transform: translateY(26px); }
-.js .eje.is-visible { opacity: 1; transform: none; }
+/* Sin animación de entrada por scroll: la sección del eje entero ya
+   entra con un fade al activarse su chip (ver applyFilters en
+   main.js) — una segunda animación aquí sería redundante y, como la
+   sección arranca en display:none, el observer de scroll nunca
+   llegaría a dispararla de todos modos. */
 @media (hover: hover) and (pointer: fine) {
-  .js .eje.is-visible:hover {
+  .eje:hover {
     transform: translateY(-4px);
     box-shadow: var(--elev-3), var(--inset-hi);
     border-top-color: color-mix(in srgb, var(--eje-color) 65%, var(--edge-hi));
@@ -487,7 +477,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--t-90);
   line-height: 1.6;
   text-align: justify;
-  hyphens: auto;
 }
 
 /* Objetivos específicos: no vuelven como un segundo párrafo largo (eso
@@ -706,25 +695,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .eje-chip[data-active="true"] .eje-chip__cta-pill { background: color-mix(in srgb, var(--chip-accent) 40%, var(--indigo-deep)); }
 
-.clear-filters {
-  display: block;
-  margin: var(--s-4) auto 0;
-  background: none;
-  border: none;
-  color: var(--orange);
-  font: inherit;
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 150ms var(--ease);
-}
-.clear-filters[data-visible="true"] { opacity: 1; pointer-events: auto; }
-@media (hover: hover) and (pointer: fine) { .clear-filters:hover { opacity: 0.75; } }
-
 /* ============================================================
    Alerta — sello de Keyword (keyreview-template/assets/svg/icono-considerar.svg)
    ============================================================ */
@@ -792,7 +762,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   box-shadow: var(--inset-hi);
   padding: var(--s-4) var(--s-5);
 }
-.intro p { font-size: var(--fs-md); color: var(--t-90); line-height: 1.65; text-align: justify; hyphens: auto; }
+.intro p { font-size: var(--fs-md); color: var(--t-90); line-height: 1.65; text-align: justify; }
 .intro p + p { margin-top: var(--s-3); }
 .intro__label {
   font-size: var(--fs-xs);
@@ -802,10 +772,70 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--orange);
   margin-bottom: var(--s-3);
 }
-/* "A considerar" al cierre reusa la misma tarjeta que la introducción
-   de apertura — mismo recurso al abrir y cerrar el reporte, a
-   propósito (bookend editorial). */
-.intro--cierre { margin-top: 0; }
+/* Texto de enlace antes de "Fortalecimiento Institucional" — mismo
+   componente que la introducción de apertura (misma tarjeta), solo se
+   ajustan los márgenes porque aquí vive como primer hijo dentro de una
+   .section que ya trae su propio padding-top (--s-section); un
+   margin-top propio duplicaría el espacio, el mismo bug ya documentado
+   arriba en Layout. */
+.intro--lead-in { margin-top: 0; margin-bottom: var(--s-5); }
+
+/* "A considerar" al cierre: no repite la tarjeta con fondo/borde de la
+   introducción de apertura — el usuario pidió algo más sutil, "como un
+   considerando", no una segunda tarjeta con el mismo peso visual. Se
+   queda solo con un filo superior fino como separador, sin fondo, sin
+   acento naranja (no es una acción) y con texto más discreto. */
+.intro--cierre {
+  margin-top: 0;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--t-15);
+  border-radius: 0;
+  box-shadow: none;
+  padding: var(--s-4) 0 0;
+}
+.intro--cierre p { font-size: var(--fs-sm); color: var(--t-70); }
+.intro--cierre .intro__label { color: var(--t-60); }
+
+/* ============================================================
+   Cita de cierre — adapta el componente "voice" de ace2040 (foto
+   circular + cita + autor) a una sola voz protagonista en vez de una
+   grilla de varias, como gesto final del reporte.
+   ============================================================ */
+.closing-quote {
+  max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.closing-quote__photo {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto var(--s-4);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--orange);
+  background: var(--indigo-deep);
+}
+.closing-quote__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.closing-quote__text {
+  position: relative;
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--white);
+}
+.closing-quote__text::before {
+  content: "\201C";
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--orange);
+  margin-bottom: -0.4rem;
+}
+.closing-quote__author { margin-top: var(--s-4); }
+.closing-quote__name { font-size: var(--fs-base); font-weight: 700; color: var(--white); }
+.closing-quote__role { font-size: var(--fs-xs); color: var(--t-70); letter-spacing: 0.03em; margin-top: 0.2rem; }
 
 /* ============================================================
    Fortalecimiento institucional — dos puntos con acciones estratégicas
@@ -851,36 +881,18 @@ ul { margin: 0; padding: 0; list-style: none; }
 .punto__accion { display: flex; gap: 0.5rem; font-size: var(--fs-sm); color: var(--t-90); line-height: 1.5; }
 .punto__accion::before { content: "›"; color: var(--orange); flex-shrink: 0; font-weight: 700; }
 
-/* ============================================================
-   Participación ciudadana — lista de solo títulos
-   ============================================================ */
-.titles-list { display: flex; flex-direction: column; gap: 0.75rem; margin-top: var(--s-4); }
-.titles-list__item {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  background: var(--t-08);
-  border: 1px solid var(--t-15);
-  border-radius: var(--r-sm);
-  padding: 0.85rem 1.1rem;
-  font-size: var(--fs-sm);
-  color: var(--t-90);
-  font-weight: 600;
-}
-.titles-list__num { color: var(--orange); font-weight: 700; flex-shrink: 0; }
-
 
 /* Movimiento reducido: se quita el desplazamiento (transform), se
    conservan los cruces de opacidad/color que ayudan a entender qué
    cambió — "menos y más suave", no "cero" (ver DESIGN.md / emil-design-eng). */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .home-hero, .js .eje {
+  .js .home-hero {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
   }
-  .js .eje.is-visible:hover,
+  .eje:hover,
   .eje-chip:hover {
     transform: none !important;
   }

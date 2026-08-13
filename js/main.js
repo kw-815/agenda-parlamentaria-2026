@@ -3,7 +3,6 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  var clearFilters = document.getElementById("clearFilters");
   var chips = Array.prototype.slice.call(document.querySelectorAll(".eje-chip"));
   var ejeSections = Array.prototype.slice.call(document.querySelectorAll('.section[id^="eje-"]'));
 
@@ -21,15 +20,14 @@
   });
 
   // ------------------------------------------------------------------
-  // Filtro por eje: muestra/oculta la sección completa de cada eje.
+  // Filtro por eje: cada sección arranca oculta (ver CSS, .js .section[id^="eje-"])
+  // y solo se muestra la del eje activo — nunca "todos a la vez".
   // ------------------------------------------------------------------
   function applyFilters() {
-    var hasChipFilter = state.activeEjes.size > 0;
-
     ejeSections.forEach(function (section) {
       var eje = section.id.replace("eje-", "");
-      var visible = !hasChipFilter || state.activeEjes.has(eje);
-      var alreadyHidden = section.style.display === "none";
+      var visible = state.activeEjes.has(eje);
+      var alreadyHidden = section.style.display === "none" || getComputedStyle(section).display === "none";
 
       if (visible) {
         if (alreadyHidden) {
@@ -48,8 +46,6 @@
         }
       }
     });
-
-    clearFilters.dataset.visible = hasChipFilter ? "true" : "false";
   }
 
   // Selección exclusiva (un eje a la vez, como pestañas) — antes cada
@@ -57,7 +53,7 @@
   // así que elegir un segundo chip sin apagar el primero dejaba ambos
   // activos a la vez y parecía que "no cambiaba de filtro". Ahora elegir
   // un chip apaga cualquier otro; tocar el que ya está activo lo apaga
-  // (vuelve a mostrar todo).
+  // (oculta ese eje de nuevo — no hay estado "mostrar todos").
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
       var eje = chip.dataset.eje;
@@ -93,22 +89,17 @@
     });
   });
 
-  clearFilters.addEventListener("click", function () {
-    state.activeEjes.clear();
-    chips.forEach(function (chip) {
-      chip.dataset.active = "false";
-      chip.setAttribute("aria-pressed", "false");
-    });
-    applyFilters();
-  });
-
   // ------------------------------------------------------------------
-  // Entrada al hacer scroll: hero + tarjetas de eje. Se salta por completo
-  // si el usuario prefiere movimiento reducido — el contenido ya es
-  // visible por defecto sin JS, esto solo evita trabajo innecesario.
+  // Entrada al hacer scroll: solo el hero. Las tarjetas de eje ya no
+  // participan de este observer — arrancan en display:none y su
+  // "entrada" es el fade que dispara applyFilters() al activarse su
+  // chip, no un scroll-reveal (un observer nunca vería un elemento con
+  // display:none de todos modos). Se salta por completo si el usuario
+  // prefiere movimiento reducido — el contenido ya es visible por
+  // defecto sin JS, esto solo evita trabajo innecesario.
   // ------------------------------------------------------------------
   if (!reduceMotion && "IntersectionObserver" in window) {
-    var revealTargets = Array.prototype.slice.call(document.querySelectorAll(".home-hero, .eje"));
+    var revealTargets = Array.prototype.slice.call(document.querySelectorAll(".home-hero"));
     var revealObserver = new IntersectionObserver(
       function (entries, obs) {
         entries.forEach(function (entry) {
@@ -121,6 +112,6 @@
     );
     revealTargets.forEach(function (el) { revealObserver.observe(el); });
   } else {
-    document.querySelectorAll(".home-hero, .eje").forEach(function (el) { el.classList.add("is-visible"); });
+    document.querySelectorAll(".home-hero").forEach(function (el) { el.classList.add("is-visible"); });
   }
 })();
