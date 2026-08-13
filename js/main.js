@@ -31,7 +31,11 @@
 
       if (visible) {
         if (alreadyHidden) {
-          section.style.display = "";
+          // "block", no "" — la sección sigue matcheando la regla CSS
+          // .js .section[id^="eje-"] { display:none }, así que limpiar el
+          // inline style con "" solo la devuelve a esa regla (sigue oculta).
+          // Hace falta un valor real que gane por encima de la clase.
+          section.style.display = "block";
           section.style.opacity = "0";
           requestAnimationFrame(function () { section.style.opacity = "1"; });
         }

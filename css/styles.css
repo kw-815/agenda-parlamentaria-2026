@@ -787,14 +787,14 @@ ul { margin: 0; padding: 0; list-style: none; }
    acento naranja (no es una acción) y con texto más discreto. */
 .intro--cierre {
   margin-top: 0;
-  background: none;
-  border: none;
-  border-top: 1px solid var(--t-15);
-  border-radius: 0;
+  background: var(--t-08);
+  border: 1px solid var(--t-10);
+  border-left: 2px solid var(--t-40);
+  border-radius: var(--r);
   box-shadow: none;
-  padding: var(--s-4) 0 0;
+  padding: var(--s-4) var(--s-5);
 }
-.intro--cierre p { font-size: var(--fs-sm); color: var(--t-70); }
+.intro--cierre p { font-size: var(--fs-sm); color: var(--t-75); }
 .intro--cierre .intro__label { color: var(--t-60); }
 
 /* ============================================================
@@ -802,21 +802,35 @@ ul { margin: 0; padding: 0; list-style: none; }
    circular + cita + autor) a una sola voz protagonista en vez de una
    grilla de varias, como gesto final del reporte.
    ============================================================ */
+/* Retrato vertical grande en vez de círculo chico: MM.jpg es un retrato
+   oficial de medio cuerpo (no una foto de perfil cuadrada) — un círculo
+   de ~100px recortaba la cara casi al ras. Un marco rectangular más
+   grande, con el mismo espíritu que un "dossier" institucional, deja
+   ver la foto completa sin forzarla a un formato que no le queda. */
 .closing-quote {
-  max-width: 46rem;
+  max-width: 56rem;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: var(--s-6);
 }
 .closing-quote__photo {
-  width: 104px;
-  height: 104px;
-  margin: 0 auto var(--s-4);
-  border-radius: 50%;
+  width: clamp(140px, 22vw, 200px);
+  aspect-ratio: 3 / 4;
+  flex-shrink: 0;
+  border-radius: var(--r-lg);
   overflow: hidden;
   border: 2px solid var(--orange);
-  background: var(--indigo-deep);
+  box-shadow: var(--elev-1);
 }
-.closing-quote__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.closing-quote__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  display: block;
+}
+.closing-quote__body { flex: 1; min-width: 0; }
 .closing-quote__text {
   position: relative;
   font-size: var(--fs-lg);
@@ -835,7 +849,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .closing-quote__author { margin-top: var(--s-4); }
 .closing-quote__name { font-size: var(--fs-base); font-weight: 700; color: var(--white); }
-.closing-quote__role { font-size: var(--fs-xs); color: var(--t-70); letter-spacing: 0.03em; margin-top: 0.2rem; }
+.closing-quote__role { font-size: var(--fs-xs); color: var(--t-60); letter-spacing: 0.03em; margin-top: 0.2rem; }
+
+@media (max-width: 640px) {
+  .closing-quote { flex-direction: column; text-align: center; }
+  .closing-quote__photo { width: clamp(120px, 40vw, 160px); }
+}
 
 /* ============================================================
    Fortalecimiento institucional — dos puntos con acciones estratégicas
