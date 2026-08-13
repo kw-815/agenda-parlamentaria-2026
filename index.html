@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    /* Marca temprana (antes del primer pintado) para que las reglas .js
+       de entrada al scroll solo apliquen si hay JS real ejecutando —
+       sin esto, contenido visible parpadearía a oculto cuando el script
+       principal corre al final del body. Sin JS, nunca se agrega .js y
+       todo el contenido queda visible por defecto. */
+    document.documentElement.classList.add('js');
+  </script>
+  <title>Agenda Parlamentaria 2026-2027 — Keyword</title>
+  <meta name="description" content="Reporte interactivo de la Agenda Parlamentaria 2026-2027 de la Asamblea Nacional del Ecuador: ejes estratégicos, objetivos y proyectos de ley priorizados." />
+  <meta property="og:title" content="Agenda Parlamentaria 2026-2027" />
+  <meta property="og:description" content="Reporte interactivo de Keyword sobre la Agenda Parlamentaria 2026-2027." />
+  <meta property="og:type" content="website" />
+
+  <link rel="canonical" href="./" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="wip-banner">
+  BASE DE DISEÑO EN CONSTRUCCIÓN — Eje 1 tiene estado real (en análisis / nueva propuesta); Ejes 2 y 3 están 100% en análisis. No incluye todavía Fiscalización, Diplomacia Parlamentaria ni Metodología de Calificación. Pendiente: imágenes reales (ver carpeta IMAGENES).
+</div>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a href="index.html" class="brand" aria-label="Keyword — inicio">
+      <img src="img/logo-keyword-white.svg" alt="Keyword" class="brand__logo" />
+    </a>
+    <nav class="nav-crumbs" aria-label="Ruta de navegación">
+      <span>Agenda Parlamentaria 2026-2027</span>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero wrap" aria-labelledby="titulo-principal">
+    <div class="home-hero">
+      <div class="hero__inner">
+        <img src="img/logo-keyword-white.svg" alt="Keyword" class="hero__logo" />
+        <h1 class="hero__title" id="titulo-principal">AGENDA PARLAMENTARIA 2026-2027</h1>
+      </div>
+    </div>
+
+    <div class="intro">
+      <p>
+        Hoy, la Asamblea Nacional presentó la agenda legislativa que regirá
+        hasta mayo de 2027 y orientará el trabajo del Parlamento. La
+        presidenta, Mishel Mancheno, señaló que el trabajo se concentrará en
+        la aprobación de leyes que permitan resolver problemas concretos de
+        los ciudadanos.
+      </p>
+      <p>
+        La hoja de ruta se estructura en tres ejes: seguridad, desarrollo
+        humano y desarrollo económico, e incorpora propuestas de las
+        distintas bancadas y fuerzas políticas. Además, contempla la
+        fiscalización, la participación ciudadana y la cooperación con
+        distintos sectores.
+      </p>
+    </div>
+  </section>
+
+  <!-- TOOLBAR: filtro por eje, como tarjetas con foto real -->
+  <section class="wrap" aria-label="Explorar por eje">
+    <div class="eje-chips" id="ejeChips" role="group" aria-label="Filtrar por eje">
+      <button type="button" class="eje-chip" data-eje="1" style="--chip-accent:var(--eje-1)" data-active="false" aria-pressed="false">
+        <span class="eje-chip__top">
+          <span class="eje-chip__num" aria-hidden="true">01</span>
+          <span class="eje-chip__title">Seguridad y anticorrupción</span>
+          <span class="eje-chip__cta">
+            <span class="eje-chip__cta-pill">Ver eje
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M12 5l5 5-5 5"/></svg>
+            </span>
+            <span class="eje-chip__meta" data-count-for="1"></span>
+          </span>
+        </span>
+        <span class="eje-chip__photo"><img src="IMAGENES/eje-1.jpg" alt="" loading="lazy" decoding="async"></span>
+      </button>
+      <button type="button" class="eje-chip" data-eje="2" style="--chip-accent:var(--eje-2)" data-active="false" aria-pressed="false">
+        <span class="eje-chip__top">
+          <span class="eje-chip__num" aria-hidden="true">02</span>
+          <span class="eje-chip__title">Desarrollo humano</span>
+          <span class="eje-chip__cta">
+            <span class="eje-chip__cta-pill">Ver eje
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M12 5l5 5-5 5"/></svg>
+            </span>
+            <span class="eje-chip__meta" data-count-for="2"></span>
+          </span>
+        </span>
+        <span class="eje-chip__photo"><img src="IMAGENES/eje-2.jpg" alt="" loading="lazy" decoding="async"></span>
+      </button>
+      <button type="button" class="eje-chip" data-eje="3" style="--chip-accent:var(--eje-3)" data-active="false" aria-pressed="false">
+        <span class="eje-chip__top">
+          <span class="eje-chip__num" aria-hidden="true">03</span>
+          <span class="eje-chip__title">Crecimiento económico</span>
+          <span class="eje-chip__cta">
+            <span class="eje-chip__cta-pill">Ver eje
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h12M12 5l5 5-5 5"/></svg>
+            </span>
+            <span class="eje-chip__meta" data-count-for="3"></span>
+          </span>
+        </span>
+        <span class="eje-chip__photo"><img src="IMAGENES/eje-3.jpg" alt="" loading="lazy" decoding="async"></span>
+      </button>
+    </div>
+
+    <button type="button" id="clearFilters" class="clear-filters" data-visible="false">Ver todos los ejes</button>
+  </section>
+
+  <!-- EJE 1 -->
+  <section class="section" id="eje-1" aria-labelledby="titulo-eje-1">
+    <div class="wrap">
+      <article class="eje eje--1">
+        <div class="eje__head">
+          <span class="eje__num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <h2 class="eje__title" id="titulo-eje-1">Seguridad y Lucha contra la Corrupción</h2>
+        </div>
+
+        <div class="eje__intro">
+          <p class="eje__block-label">Objetivo</p>
+          <p class="eje__objetivo">Fortalecer la seguridad nacional con un marco jurídico que enfrente el crimen organizado, la delincuencia y la violencia, y combata la corrupción y la impunidad para una gestión pública más íntegra y eficiente.</p>
+          <p class="eje__block-label eje__block-label--sm">Objetivos específicos</p>
+          <ul class="eje__especificos">
+            <li>Marco normativo de seguridad ciudadana</li>
+            <li>Transparencia y eficiencia de la justicia</li>
+          </ul>
+        </div>
+
+        <div class="eje__proyectos-block">
+          <p class="eje__block-label">Proyectos de ley priorizados</p>
+
+          <div class="proyectos-group">
+            <p class="proyectos-group__label">
+              <span class="status-tag status-tag--analisis">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                En análisis
+              </span>
+            </p>
+            <ul class="proyectos" data-eje-group="1-analisis">
+              <li class="proyecto" data-eje="1"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código de la Función Judicial.</span></span></li>
+              <li class="proyecto" data-eje="1"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria para la Prevención y Erradicación del Reclutamiento o Utilización de Niñas, Niños y Adolescentes.</span></span></li>
+              <li class="proyecto" data-eje="1"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley contra la Trata de Personas y el Tráfico Ilícito de Migrantes.</span></span></li>
+              <li class="proyecto" data-eje="1"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a Varios Cuerpos Legales para el Fortalecimiento de las Capacidades Institucionales del Estado frente al Crimen Organizado (Ley Antimafias).</span></span></li>
+              <li class="proyecto" data-eje="1"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley que Regula el Apoyo Complementario y Subsidiario de las Fuerzas Armadas a la Policía Nacional (Art. 158 de la Constitución).</span></span></li>
+              <li class="proyecto" data-eje="1"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código Integral Penal.</span></span></li>
+            </ul>
+          </div>
+
+          <div class="proyectos-group">
+            <p class="proyectos-group__label">
+              <span class="status-tag status-tag--nueva">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+                Nueva propuesta
+              </span>
+            </p>
+            <ul class="proyectos" data-eje-group="1-nueva">
+              <li class="proyecto" data-eje="1"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley de Recuperación Productiva y Territorial frente al Crimen Organizado.</span></span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EJE 2 -->
+  <section class="section" id="eje-2" aria-labelledby="titulo-eje-2">
+    <div class="wrap">
+      <article class="eje eje--2">
+        <div class="eje__head">
+          <span class="eje__num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-5 4 4 7-8"/><path d="M15 8h5v5"/></svg></span>
+          <h2 class="eje__title" id="titulo-eje-2">Desarrollo Humano y Modernización Institucional</h2>
+        </div>
+
+        <div class="eje__intro">
+          <p class="eje__block-label">Objetivo</p>
+          <p class="eje__objetivo">Impulsar el bienestar de la población y modernizar los procesos institucionales: ampliar el acceso a salud, educación, vivienda y empleo, y simplificar y digitalizar la gestión pública.</p>
+          <p class="eje__block-label eje__block-label--sm">Objetivos específicos</p>
+          <ul class="eje__especificos">
+            <li>Acceso a vivienda, salud, educación y empleo</li>
+            <li>Modernización y digitalización institucional</li>
+          </ul>
+        </div>
+
+        <div class="eje__proyectos-block">
+          <p class="eje__block-label">Proyectos de ley priorizados</p>
+          <p class="proyectos-group__label">
+            <span class="status-tag status-tag--analisis">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              En análisis
+            </span>
+          </p>
+          <ul class="proyectos" data-eje-group="2">
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley de Salud.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código de la Niñez y Adolescencia.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley que Promueve el Reconocimiento y Empoderamiento de la Mujer Rural.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley para la Atención Integral de las Personas con Obesidad.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código de Organización Territorial, Autonomía y Descentralización (COOTAD).</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley de Inquilinato.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley de Garantías Jurisdiccionales y Control Constitucional, para Rescatar la Justicia Constitucional.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a Varios Cuerpos Legales para el Fortalecimiento de la Mediación Prejudicial de Asistencia, la Solución Temprana de Controversias y la Transacción Pública Responsable.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria de la Ley de Prevención, Protección y Atención Integral de las Personas que Padecen Diabetes.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley de las Personas Adultas Mayores.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código del Trabajo y a la Ley del Servicio Público que Regula la Obligatoriedad en la Contratación de Jóvenes.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley de Inteligencia Artificial.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a Varias Leyes para Garantizar el Derecho a la Protección en la Maternidad y Paternidad en el Duelo Gestacional, Perinatal y Neonatal.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley para la Planificación y Desarrollo Integral de la Circunscripción Amazónica.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley de Institucionalización y Fortalecimiento del Servicio Ecuatoriano de Capacitación Profesional (SECAP).</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley de la Función Legislativa.</span></span></li>
+            <li class="proyecto" data-eje="2"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria de la Ley de Vivienda de Interés Social.</span></span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EJE 3 -->
+  <section class="section" id="eje-3" aria-labelledby="titulo-eje-3">
+    <div class="wrap">
+      <article class="eje eje--3">
+        <div class="eje__head">
+          <span class="eje__num" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="11" rx="1.5"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+          <h2 class="eje__title" id="titulo-eje-3">Crecimiento Económico Sostenible y Seguridad Jurídica para la Inversión</h2>
+        </div>
+
+        <div class="eje__intro">
+          <p class="eje__block-label">Objetivo</p>
+          <p class="eje__objetivo">Impulsar el crecimiento económico sostenible: elevar la productividad, dinamizar la inversión y el empleo, y crear condiciones más favorables para la producción y la inserción de Ecuador en mercados internacionales.</p>
+          <p class="eje__block-label eje__block-label--sm">Objetivos específicos</p>
+          <ul class="eje__especificos">
+            <li>Impulso a la producción y las exportaciones</li>
+            <li>Condiciones claras para la inversión</li>
+          </ul>
+        </div>
+
+        <div class="eje__proyectos-block">
+          <p class="eje__block-label">Proyectos de ley priorizados</p>
+          <p class="proyectos-group__label">
+            <span class="status-tag status-tag--analisis">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              En análisis
+            </span>
+          </p>
+          <ul class="proyectos" data-eje-group="3">
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley de Desarrollo Agropecuario.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código Tributario.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria del Código Monetario y Financiero.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley de Aviación Civil.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley de Transporte Terrestre, Tránsito y Seguridad Vial.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código de la Producción, Comercio e Inversiones.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley de Concurso Preventivo para el Fortalecimiento de la Continuidad Empresarial.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria a la Ley de Emprendimiento e Innovación.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria al Código del Ambiente.</span></span></li>
+            <li class="proyecto" data-eje="3"><span class="proyecto__row"><span class="proyecto__bullet"></span><span class="proyecto__text">Ley Reformatoria para una Caracterización Acuícola Pesquera a la Ley para el Desarrollo de la Acuicultura y Pesca.</span></span></li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FORTALECIMIENTO INSTITUCIONAL -->
+  <section class="section" id="fortalecimiento" aria-labelledby="titulo-fortalecimiento">
+    <div class="wrap">
+      <header class="section-mark">
+        <h2 class="section-mark__title" id="titulo-fortalecimiento">Fortalecimiento Institucional de la Asamblea Nacional</h2>
+        <p class="section-mark__lead">
+          Fortalecer la organización y transparencia de la Asamblea, con
+          procesos internos más eficientes y personal técnico más capacitado.
+        </p>
+      </header>
+
+      <div class="puntos-grid">
+        <article class="punto">
+          <span class="punto__num" aria-hidden="true">1</span>
+          <h3 class="punto__title">Modelo de gestión legislativa</h3>
+          <p class="punto__text">
+            Planificación, seguimiento y evaluación permanente del trabajo
+            legislativo, para mejorar la coordinación y el tiempo de respuesta
+            en el trámite de los proyectos de ley.
+          </p>
+          <p class="punto__label">Acciones estratégicas</p>
+          <ul class="punto__acciones">
+            <li class="punto__accion">Evaluación permanente de la Agenda Parlamentaria y la agenda de trabajo de las comisiones.</li>
+            <li class="punto__accion">Herramientas de gestión que identifiquen avances, alertas y oportunidades de mejora.</li>
+            <li class="punto__accion">Mayor transparencia, rendición de cuentas y acceso ciudadano a la información legislativa.</li>
+          </ul>
+        </article>
+
+        <article class="punto">
+          <span class="punto__num" aria-hidden="true">2</span>
+          <h3 class="punto__title">Profesionalización del talento humano</h3>
+          <p class="punto__text">
+            Fortalecer las habilidades técnicas del personal legislativo y
+            actualizar el marco jurídico necesario para sostener el modelo de
+            gestión.
+          </p>
+          <p class="punto__label">Acciones estratégicas</p>
+          <ul class="punto__acciones">
+            <li class="punto__accion">Capacitación y evaluación permanente para asesores y servidores legislativos.</li>
+            <li class="punto__accion">Especialización técnica de las unidades de apoyo parlamentario y administrativo.</li>
+            <li class="punto__accion">Reformas a la Ley de la Función Legislativa para institucionalizar planificación y evaluación.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTICIPACIÓN CIUDADANA -->
+  <section class="section" id="participacion" aria-labelledby="titulo-participacion">
+    <div class="wrap">
+      <header class="section-mark">
+        <h2 class="section-mark__title" id="titulo-participacion">Modernización de los Mecanismos de Participación Ciudadana</h2>
+        <p class="section-mark__lead">
+          Ampliar y modernizar los mecanismos de participación ciudadana, con
+          mejores canales de diálogo entre la Asamblea y la sociedad.
+        </p>
+      </header>
+
+      <div class="titles-list">
+        <p class="titles-list__item"><span class="titles-list__num">1</span>Modernización de los mecanismos de participación ciudadana</p>
+        <p class="titles-list__item"><span class="titles-list__num">2</span>Participación territorial y diálogo permanente</p>
+        <p class="titles-list__item"><span class="titles-list__num">3</span>Innovación, transparencia y acceso a la información</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- A CONSIDERAR (cierre) -->
+  <section class="section" id="a-considerar" aria-labelledby="titulo-a-considerar">
+    <div class="wrap">
+      <div class="intro intro--cierre">
+        <p class="intro__label" id="titulo-a-considerar">A considerar</p>
+        <p>
+          La agenda contempla fiscalización, participación ciudadana y
+          cooperación con distintos sectores. En este marco, la presidenta
+          hizo un llamado a las distintas bancadas, la academia, organismos
+          internacionales, sectores productivos y ciudadanía a participar y
+          aportar con observaciones y propuestas para fortalecer el trabajo
+          legislativo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <img src="img/logo-keyword-white.svg" alt="Keyword" class="site-footer__logo" />
+    <p class="site-footer__copy">©Todos los derechos reservados</p>
+    <p class="site-footer__contact">Contacto: <a href="mailto:info@keyword.com.ec">info@keyword.com.ec</a></p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

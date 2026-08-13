@@ -1,0 +1,12 @@
+.DS_Store
+
+# Herramientas/config de desarrollo, no forman parte del sitio desplegado
+.claude/
+.agents/
+.impeccable/
+skills-lock.json
+
+# Material de trabajo interno (no lo sirve el sitio, ya está volcado en index.html)
+REFERENCIAS/
+RECURSOS/
+data/
