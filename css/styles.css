@@ -499,17 +499,24 @@ ul { margin: 0; padding: 0; list-style: none; }
   line-height: 1.3;
 }
 
-/* El contenedor usa `columns` (masonry real), NO `display:grid`. Con
-   grid, cada FILA se estira a la altura de su celda más alta — como los
-   nombres de ley varían mucho en longitud, eso dejaba huecos en blanco
-   bajo las leyes cortas cada vez que compartían fila con una larga. Con
-   columns, cada ítem fluye hacia abajo dentro de su columna sin esperar
-   a los demás — sin huecos forzados. */
+/* Grid, no `columns` (masonry). Ya se había probado grid antes y se
+   descartó porque con el `align-items: stretch` por defecto, cada celda
+   se estira a la altura de la más alta de su fila — con nombres de ley
+   tan dispares, eso dejaba cajas cortas infladas con mucho espacio
+   vacío adentro. La solución no era evitar grid, era `align-items:
+   start`: cada caja conserva su alto real de contenido (nunca se
+   estira) y el sobrante de la fila queda como aire entre cajas, no
+   como una caja gigante vacía — y a diferencia de `columns`, que
+   llenaba cada columna de arriba a abajo antes de pasar a la
+   siguiente (orden de lectura raro, y las cajas de columnas vecinas no
+   alineaban entre sí), grid en filas reales sí da simetría de verdad:
+   todo alinea en la misma cuadrícula. */
 .proyectos {
-  columns: 320px 3;
-  column-gap: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  align-items: start;
+  gap: 0.6rem;
 }
-.proyecto { break-inside: avoid; margin-bottom: 0.6rem; }
 .proyecto__row {
   display: flex;
   align-items: flex-start;
