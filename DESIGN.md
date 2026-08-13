@@ -53,18 +53,18 @@ spacing:
   lg: "1.5rem"
   xl: "2rem"
   "2xl": "3rem"
-  section: "clamp(3.5rem, 8vw, 6.5rem)"
+  section: "clamp(2rem, 4.5vw, 3.25rem)"
 components:
-  chip:
-    backgroundColor: "{colors.indigo-soft}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.pill}"
-    padding: "0.5rem 0.9rem"
-  chip-active:
+  eje-chip:
     backgroundColor: "{colors.orange}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.lg}"
+    padding: "0"
+  eje-chip-cta:
+    backgroundColor: "{colors.indigo-deep}"
     textColor: "{colors.paper}"
     rounded: "{rounded.pill}"
-    padding: "0.5rem 0.9rem"
+    padding: "0.4rem 0.8rem"
   card-eje:
     backgroundColor: "{colors.indigo-deep}"
     textColor: "{colors.paper}"
@@ -78,7 +78,7 @@ components:
 
 **Creative North Star: "El Boletín de Estado"**
 
-Un boletín oficial digitalizado: serio, verificable, sin decoración gratuita — pero legible y navegable de una forma que el PDF nunca pudo ser. El índigo profundo funciona como "papel oficial", la superficie sobre la que todo lo demás se posa; el naranja es el único sello de acción del sistema, reservado casi exclusivamente para lo que el lector puede *hacer* (filtrar, actuar), nunca para decorar. Los cinco colores de eje no son marca, son señalización — cumplen el mismo rol que las pestañas de color en un archivo físico: identifican una categoría a simple vista sin competir entre sí por atención. El dinamismo visual que en el PDF original venían de íconos e ilustraciones simples se recupera aquí con una librería de íconos grandes, monolínea, heredada de `ace2040` — no decoran porque sí, cada uno identifica el tema del eje y llena el espacio que dejaría vacío un bloque de objetivos corto junto a una lista de leyes larga.
+Un boletín oficial digitalizado: serio, verificable, sin decoración gratuita — pero legible y navegable de una forma que el PDF nunca pudo ser. El índigo profundo funciona como "papel oficial", la superficie sobre la que todo lo demás se posa; el naranja es el único sello de acción del sistema, reservado casi exclusivamente para lo que el lector puede *hacer* (filtrar, actuar), nunca para decorar. Los cinco colores de eje no son marca, son señalización — cumplen el mismo rol que las pestañas de color en un archivo físico: identifican una categoría a simple vista sin competir entre sí por atención. El dinamismo visual final se resolvió con dos recursos, no con una librería de íconos: (1) un ícono pequeño y propio (no heredado de otro repo) dentro del círculo de 44px de cada eje, y (2) fotografía real por eje en las tarjetas de filtro (adaptando `.obj-cover` de ace2040) más una cita de cierre con retrato — ambos vistos y aprobados por el usuario en vivo, a diferencia de dos intentos previos (íconos grandes monolínea heredados de `ace2040/tools/icons.py`, y numerales gigantes de solo contorno) que se probaron y se revirtieron por completo: el usuario los identificó como "reciclar recursos que ya usamos en otros productos" en vez de diseñar para este contenido específico.
 
 Este sistema es heredado, no inventado: comparte tokens con otros micrositios de Keyword (ace2040, pnsi-2025-2029, asamblea-ec, gabinete-ec). Refinar aquí significa afinar cómo se *usan* esos tokens para este reporte específico — más disciplina en la aplicación del color, no una paleta nueva.
 
@@ -183,7 +183,7 @@ Radios generosos y consistentes en tres escalones: `10px` (elementos pequeños �
 - **Internal Padding:** `clamp(1.75rem, 4vw, 2.75rem)`.
 - El círculo numerado del eje (40px, relleno con el color del eje mezclado al 45% sobre índigo suave — bajado desde 85% para mantener ≥4.5:1 de contraste con el texto blanco en los 5 ejes) es el único lugar donde el color de eje aparece como relleno sólido — es la insignia de identidad, la excepción deliberada a la regla de señalización.
 
-*Nota (2026-08-13): se probaron y se revirtieron dos recursos de "carácter" adicionales — un ícono de línea flotante por eje (librería de ace2040) y, después, un numeral gigante de solo contorno (recurso de ace2040/tools/icons.py nunca antes usado). Ambos intentos partieron de "qué existe en otros repos de Keyword" en vez de diseñar para el contenido real de este proyecto — feedback explícito del usuario. Lo que sí se mantuvo: un ícono pequeño y propio (no de otro repo) dentro del mismo círculo de 44px de siempre — mismo tamaño/posición que ya funcionaba, cero riesgo de layout. Pendiente: imágenes reales (foto por eje, foto de hero) — carpeta `IMAGENES/` creada 2026-08-13 para que el usuario las suba.*
+*Nota (2026-08-13): se probaron y se revirtieron dos recursos de "carácter" adicionales — un ícono de línea flotante por eje (librería de ace2040) y, después, un numeral gigante de solo contorno (recurso de ace2040/tools/icons.py nunca antes usado). Ambos intentos partieron de "qué existe en otros repos de Keyword" en vez de diseñar para el contenido real de este proyecto — feedback explícito del usuario. Lo que sí se mantuvo: un ícono pequeño y propio (no de otro repo) dentro del mismo círculo de 44px de siempre — mismo tamaño/posición que ya funcionaba, cero riesgo de layout. Imágenes reales entregadas el mismo día — ver "Hero", "Chips" y "Cita de cierre" más abajo para el estado final de cada una (`hero.jpg` real; `eje-1/2/3.jpg` generadas con IA a pedido del usuario; `MM.jpg` retrato real).*
 
 ### Objetivo de cada eje (`.eje__objetivo`)
 - **Qué reemplaza:** una lista `<ul>` de 2-3 viñetas largas (una por "objetivo general" + "objetivos específicos" del documento fuente) que dejaba una columna angosta con mucho espacio vacío al lado — el objetivo real de cada eje es largo en el documento oficial, y una lista de viñetas no es el formato correcto para párrafos de esa extensión.
